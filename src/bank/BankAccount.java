@@ -4,16 +4,25 @@ public class BankAccount {
 
     private Person owner;
 
-    private double amount;
+    private double sold;
 
     private int id;
 
-    public BankAccount(Person owner, double amount, int id) {
+    public BankAccount(Person owner, double sold, int id) {
         this.owner = owner;
-        this.amount = amount;
+        this.sold = sold;
         this.id = id;
     }
 
-    public BankAccount() {
+    @Override
+    public String toString(){
+
+        return String.format(
+                "\nPERSON: %s\nSOLD: %s\nID: %s",
+                owner,
+                sold,
+                id);
     }
+
 }
+

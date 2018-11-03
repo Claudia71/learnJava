@@ -16,10 +16,32 @@ public class Person {
     }
 
     @Override
+    public String toString(){
 
-    public String toString();{
         return String.format(
-                "\nName: "
-        )
+                "\nName: %s\nEmployer: %s\nLocation: %s",
+                name,
+                employer.name(),
+                location);
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
+    public Employer getEmployer() {
+        return employer;
+    }
+
+
+    public String getLocation() {
+        return location;
     }
 }
+

@@ -2,11 +2,13 @@ package bank;
 
 public enum Employer {
 
-    Company1,
-
-    Visma,
+    CocaCola,
 
     IBM,
 
-    OCG
+    Visma,
+
+    BRD;
+
 }
+
