@@ -109,17 +109,24 @@ public class ArrayPracticeTask {
     // Homework: implement following methods
     
     public static void printNumbersAtOddIndexes(int[] intArray) {
-        // 1 Homework implementation        
+        //1 Homework implementation
+        for (int i = 0; i < intArray.length; i++) {
+            if(isOdd(i)){
+                System.out.println(intArray[i]);
+            }
+
+        }       
     }
 
     
     
     public static void printNegativeNumbers(int[] intArray) {
-        // 2 Homework implementation        
+        // 2 Homework implementation
+
     }
 
-    
-    
+
+
     public static void printNumbersBiggerThan10(int[] intArray) {
         // 3 Homework implementation
     }

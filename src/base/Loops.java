@@ -15,6 +15,7 @@ public  void printSimpleArray(){
     integerArray[2]=2;
     integerArray[3]=3;
 
+
     for(int i=0;i<integerArray.length;i++){
         System.out.println(integerArray[i]);
     }
