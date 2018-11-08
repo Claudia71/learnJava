@@ -8,14 +8,16 @@ public class BankAccount {
 
     private int id;
 
+
     public BankAccount(Person owner, double sold, int id) {
+
         this.owner = owner;
         this.sold = sold;
         this.id = id;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
 
         return String.format(
                 "\nPERSON: %s\nSOLD: %s\nID: %s",
@@ -25,4 +27,3 @@ public class BankAccount {
     }
 
 }
-

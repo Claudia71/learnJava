@@ -1,25 +1,26 @@
 package base;
 
+import enumsPractice.NumbersEnum;
+
 import java.util.Arrays;
 
-public class ArrayPractice {
+public interface ArrayPractice {
 
 
-    public static boolean isEven(int number) {
+    static boolean isEven(int number) {
 
         return number % 2 == 0;
     }
 
 
-    public static boolean isOdd(int number) {
+    static boolean isOdd(int number) {
 
         return number % 2 != 0;
         // return ( ! isEven(number))
     }
 
 
-    public static void printEvenNumbers(int[] intArray) {
-
+    static void printEvenNumbers(int[] intArray) {
 
         for (int i = 0; i < intArray.length; i++) {
 
@@ -31,8 +32,7 @@ public class ArrayPractice {
     }
 
 
-    public static void printOddNumbers(int[] intArray) {
-
+    static void printOddNumbers(int[] intArray) {
 
         for (int i = 0; i < intArray.length; i++) {
 
@@ -44,7 +44,7 @@ public class ArrayPractice {
     }
 
 
-    private static int sum(int[] intArray) {
+    static int sum(int[] intArray) {
 
         int sum = 0;
 
@@ -56,14 +56,14 @@ public class ArrayPractice {
     }
 
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
 
         int[] intArray = {2, 3, 4, 7, 99, 4, 120, 111, -5, -99, 55, 13, 29, 1, 0};
 
         // The size of an array can't be modified.
-        // This will not work because the intArray has a fixed length of 15.
+        // This will throw because the intArray has a fixed length of 15.
         // Uncomment to test it.
-        // intArray[15] = 9; 
+        // intArray[15] = 9;
 
         System.out.println("Array: " + Arrays.toString(intArray));
 
@@ -81,8 +81,8 @@ public class ArrayPractice {
         printNumbersAtOddIndexes(intArray);
 
         // 2
-        System.out.println("\nNegative numbers:");
-        getNegativeNumbers(intArray);
+        System.out.println("\nNegative numbers: "
+                + Arrays.toString(getNegativeNumbers(intArray)));
 
         // 3
         System.out.println("\nNumbers bigger than 10:");
@@ -90,82 +90,96 @@ public class ArrayPractice {
 
         // 4
         System.out.println(String.format(
-                "\nArray positive elements average: %.2f",
+                "\nArray elements average: %.2f",
                 average(intArray)));
 
         // 5
         System.out.println(String.format(
-                "\nArray positive elements average: %.2f",
-                positiveElementsAverage(intArray)));
+                "\nArray positive elements average: %.2f %s",
+                positiveElementsAverage(intArray),
+                "averageValue"));
+
+        // 6
+        // Enum test
+        System.out.println("\nNumbersEnum.first name: " + NumbersEnum.first.name());
+        System.out.println("\nNumbersEnum.first value: " + NumbersEnum.first.getValue());
+
+        String enumMember = "second";
+        System.out.println("\nNumbersEnum.first value from string: "
+
+                + NumbersEnum.valueOf(enumMember).getValue());
     }
 
 
     // Homework: implement following methods
-
-    public static void printNumbersAtOddIndexes(int[] intArray) {
+    static void printNumbersAtOddIndexes(int[] intArray) {
         // 1 Homework implementation
         for (int i = 0; i < intArray.length; i++) {
-            if (isOdd(i))
+            if (isOdd(i)) {
                 System.out.println(intArray[i]);
+            }
         }
     }
 
 
-    public static int[] getNegativeNumbers(int[] intArray) {
+    static int[] getNegativeNumbers(int[] intArray) {
+
         // 2 Homework implementation
         int[] finalArray = new int[intArray.length];
         int finalArrayIndex = 0;
 
         for (int i = 0; i < intArray.length; i++) {
 
-
             int currentElement = intArray[i];
 
-            if (intArray[i] < 0) {
-
-
-                finalArray[finalArrayIndex] = currentElement;
+            if (currentElement < 0) {
+                finalArray[finalArrayIndex++] = currentElement;
             }
         }
-        return Arrays.copyOfRange(finalArray, 0, finalArrayIndex );
+
+        return Arrays.copyOfRange(finalArray, 0, finalArrayIndex);
     }
 
-        public static void printNumbersBiggerThan10 ( int[] intArray){
 
-            for(int i = 0; i< intArray.length; i++){
-                if(intArray[i] >10){
-                    System.out.println(intArray[i]);
-                }
+    static void printNumbersBiggerThan10(int[] intArray) {
+
+        for (int i = 0; i < intArray.length; i++) {
+            if (intArray[i] > 10) {
+                System.out.println(intArray[i]);
             }
         }
-
-
-        public static float average ( int[] intArray){
-            // 4 Homework implementation
-            // TIP: the average must be a float; you will need a cast
-            return (float)sum(intArray)/intArray.length;
-        }
-
-
-        public static float positiveElementsAverage ( int[] intArray){
-
-
-
-            int sum = 0;
-            int positiveCount = 0;
-
-            for (int i = 0; i < intArray.length; i++) {
-                if(intArray[i]>0){
-                    sum +=intArray[i];
-                    positiveCount++;
-                }
-
-            }
-            if(positiveCount ==0){
-                return 0;
-            }
-
-            return (float) sum/positiveCount;
-        }
-
     }
+
+
+    static float average(int[] intArray) {
+
+        if (intArray.length == 0) {
+            return 0;
+        }
+
+        return (float) sum(intArray) / intArray.length;
+    }
+
+
+    static float positiveElementsAverage(int[] intArray) {
+
+        int sum = 0;
+        int positiveCount = 0;
+
+        for (int i = 0; i < intArray.length; i++) {
+
+            if (intArray[i] > 0) {
+                sum += intArray[i];
+                positiveCount++;
+            }
+        }
+
+        if (positiveCount == 0) {
+            return 0;
+        }
+
+        return (float) sum / positiveCount;
+    }
+
+}
+
